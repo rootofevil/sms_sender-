@@ -11,8 +11,8 @@ def sendsms():
     if not request.json or not 'caller_id' in request.json:
         abort(400)
     msg = dict(caller_id = request.json['caller_id'], text = request.json['text'])
-    #result = call(['sudo', '-u', 'smstools', 'smssend', msg['caller_id'], msg['text']])
-    result = 1
+    result = call(['sudo', '-u', 'smstools', 'smssend', msg['caller_id'], msg['text']])
+    #result = 1
     if result == 0:
         return jsonify({'status': 'ok'}), 201
     else: 
